@@ -17,14 +17,22 @@ courseRouter.post("/add", async (req, res) => {
 });
 
 courseRouter.get("/allcourse", async (req, res) => {
-  const course = await courseModel.find();
-  res.send(course);
+  try {
+    const course = await courseModel.find();
+    res.send(course);
+  } catch (error) {
+    res.send({ msg: error });
+  }
 });
 
 courseRouter.get("/singleCourse/:id", async (req, res) => {
-  const id = req.params.id;
-  const course = await courseModel.find({ _id: id });
-  res.send(course);
+  try {
+    const id = req.params.id;
+    const course = await courseModel.find({ _id: id });
+    res.send(course);
+  } catch (error) {
+    res.send({ msg: error });
+  }
 });
 
 module.exports = {
